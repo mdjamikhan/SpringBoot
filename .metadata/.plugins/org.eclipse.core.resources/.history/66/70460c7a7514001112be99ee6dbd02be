@@ -1,0 +1,25 @@
+package com.lpu.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.lpu.demo.Entity.College;
+import com.lpu.demo.Service.collegeService;
+
+@RestController   // ✅ change here
+public class collegeController {
+
+    @Autowired
+    private collegeService clgService;
+
+    @PostMapping("/saveCollege")
+    public College save(@RequestBody College c) {
+
+        // Important: set relation before saving
+        if (c.getStudent() != null) {
+            c.getStudent().forEach(s -> s.setCollege(c));
+        }
+
+        return clgService.saveCollege(c);
+    }
+}

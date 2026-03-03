@@ -1,0 +1,12 @@
+package com.lpu.EmployeeApp.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.lpu.EmployeeApp.repository.EmployeeRepository;
+
+public class EmployeeService {
+	
+	@Autowired
+	private EmployeeRepository empRepo;
+
+}

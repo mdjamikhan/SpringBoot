@@ -1,0 +1,5 @@
+package com.lpu.demo.Entity;
+
+public class College {
+
+}

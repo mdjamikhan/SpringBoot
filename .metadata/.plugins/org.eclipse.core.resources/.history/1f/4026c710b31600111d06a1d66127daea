@@ -1,0 +1,27 @@
+@RestController
+public class EmployeeController {
+
+    @Autowired
+    private EmployeeService empService;
+
+    @PostMapping("/saveEmployee")
+    public ResponseEntity<EmployeeDTO> saveEmployee(
+            @Valid @RequestBody EmployeeDTO dto) {
+
+        EmployeeDTO savedEmployee = empService.saveEmployeeDTO(dto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(savedEmployee);
+    }
+
+    @GetMapping("/findEmployee/{id}")
+    public ResponseEntity<EmployeeDTO> findEmployee(@PathVariable int id) {
+
+        EmployeeApp employee = empService.findEmployee(id);
+        EmployeeDTO dto = empService.entityToDTO(employee);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(dto);
+    }
+}

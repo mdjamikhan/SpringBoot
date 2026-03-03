@@ -1,0 +1,13 @@
+package com.lpu.EmployeeApp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.lpu.EmployeeApp.service.EmployeeService;
+
+public class EmployeeController {
+	
+	@Autowired
+	private EmployeeService empService;
+	
+
+}

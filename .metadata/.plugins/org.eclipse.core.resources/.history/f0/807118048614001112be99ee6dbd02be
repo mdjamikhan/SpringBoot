@@ -1,0 +1,31 @@
+package com.lpu.demo.controller;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import com.lpu.demo.Entity.College;
+import com.lpu.demo.Entity.Student;
+import com.lpu.demo.Service.collegeService;
+
+@RestController    
+public class collegeController {
+
+    @Autowired
+    private collegeService clgService;
+
+    @PostMapping("/saveCollege")
+    public College save(@RequestBody College c) {
+   	
+        return clgService.saveCollege(c);
+    }
+    
+    @GetMapping("/findCollege")
+    public College findCollegee(@RequestParam int id) {
+    	return  clgService.finding(id);
+
+    	
+    }
+}

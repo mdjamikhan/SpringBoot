@@ -1,0 +1,39 @@
+package com.lpu.EmployeeApp.exception;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+	 
+		@ExceptionHandler(ArithmeticException.class)
+		public Map<String, String> handlerArithematicEx(ArithmeticException ex) {
+			Map<String, String> mp=new HashMap<>();
+			   mp.put("Error", ex.getMessage());
+			   
+			   return mp;
+	 
+		
+	}
+		@ExceptionHandler(CompanyNotFoundException.class)
+		public Map<String,String> handleCompanyNotFoundException(CompanyNotFoundException c){
+			
+			Map<String,String>mp=new HashMap<  >();
+			mp.put("error",c.getMessage());
+			return mp;
+		}
+		@ExceptionHandler( MethodArgumentNotValidException.class)
+		public Map<String,String> handleMethodArgumentNotValidException(MethodArgumentNotValidException c){
+			
+			Map<String,String>mp=new HashMap<  >();
+			c.getBindingResult().getFieldErrors().forEach(error->mp.put(error.getField(),error.getDefaultMessage()));
+			
+			return mp;
+			
+ 
+		}
+}

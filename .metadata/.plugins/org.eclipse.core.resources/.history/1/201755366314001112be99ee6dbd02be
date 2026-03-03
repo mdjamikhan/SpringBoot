@@ -1,0 +1,32 @@
+package com.lpu.demo.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.lpu.demo.Entity.Student;
+import com.lpu.demo.respository.studentRepository;
+
+@Service
+public class StudentService {
+	@Autowired
+	private studentRepository repository;
+
+
+	public Student saveStudent(Student student) {
+		return repository.save(student);
+		
+	}
+	
+//	public StudentService() {
+//		
+//	}
+//	
+	
+//	@Autowired
+//	public StudentService(studentRepository repository) {
+//		super();
+//		this.repository = repository;
+//	}
+	
+
+}

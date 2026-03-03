@@ -1,0 +1,58 @@
+package com.lpu.EmployeeApp.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.lpu.EmployeeApp.entity.CompanyApp;
+import com.lpu.EmployeeApp.entity.EmployeeApp;
+import com.lpu.EmployeeApp.service.CompanyService;
+
+
+@RestController
+public class CompanyController {
+	
+	@Autowired 
+	private CompanyService service;
+	
+	
+	@PostMapping("/saveCompany")
+	public ResponseEntity<CompanyApp> saveCompany(@RequestBody CompanyApp c) {
+		CompanyApp com= service.saveCompany(c);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(com);
+	}
+	@PostMapping("/saveCompanyMapping")
+	public ResponseEntity<CompanyApp> SaveCompanyWithMapping(@RequestBody  CompanyApp c) {
+		CompanyApp com= service.saveCompanyAndMapWithEmployee(c);
+		return new ResponseEntity<CompanyApp>(com,HttpStatus.CREATED);
+	}
+	
+
+	
+	@PostMapping("/saveCompany/{cId}")
+	public CompanyApp SaveCompanyWithMapping(@PathVariable int cId,@RequestBody  List<EmployeeApp> emp) {
+		return service.saveEmployeeToExistingCompany(cId,emp);
+	}
+	@GetMapping("divide/{n1}/{n2}")
+	public String dividenum(@PathVariable int n1,@PathVariable int n2) {
+		return "result: "+n1/n2;
+	}
+	@GetMapping("companyFind/{id}")
+	public ResponseEntity<CompanyApp> CompanyFind(@PathVariable int id) {
+		CompanyApp com=service.findCompany(id);
+		return ResponseEntity.ok(com);
+	}
+	
+	
+	
+
+}

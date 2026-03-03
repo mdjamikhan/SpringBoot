@@ -1,0 +1,21 @@
+package com.lpu.EmployeeApp.exception;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+	 
+		@ExceptionHandler(ArithmeticException.class)
+		public Map<String, String> handlerArithematicEx(ArithmeticException ex) {
+			Map<String, String> mp=new HashMap<>();
+			   mp.put("Error", ex.getMessage());
+			   
+			   return mp;
+	 
+		
+	}
+}

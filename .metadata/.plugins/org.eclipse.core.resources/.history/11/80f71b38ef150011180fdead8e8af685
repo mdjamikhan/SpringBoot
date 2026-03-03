@@ -1,0 +1,20 @@
+package com.lpu.EmployeeApp.entity;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
+
+public class Company {
+	
+	@Id
+	private int id;
+	private String name;
+	private String location;
+	@OneToMany(mappedBy = )
+	private List<Employee> employees;
+
+}

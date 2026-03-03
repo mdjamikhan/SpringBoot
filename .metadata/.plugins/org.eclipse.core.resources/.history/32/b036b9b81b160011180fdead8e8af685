@@ -1,0 +1,54 @@
+package com.lpu.EmployeeApp.exception;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+	 
+		@ExceptionHandler(ArithmeticException.class)
+		public ResponseEntity< Map<String, String>> handlerArithematicEx(ArithmeticException ex) {
+			Map<String, String> mp=new HashMap<>();
+			   mp.put("Error", ex.getMessage());
+			   
+			   return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(mp);
+	 
+		
+	}
+		@ExceptionHandler(CompanyNotFoundException.class)
+		public ResponseEntity< Map<String, String>> handleCompanyNotFoundException(CompanyNotFoundException c){
+			
+			Map<String,String>mp=new HashMap<  >();
+			mp.put("error",c.getMessage());
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mp);
+		}
+		@ExceptionHandler( MethodArgumentNotValidException.class)
+		public Map<String,String> handleMethodArgumentNotValidException(MethodArgumentNotValidException c){
+			
+			Map<String,String>mp=new HashMap<  >();
+			c.getBindingResult().getFieldErrors().forEach(error->mp.put(error.getField(),error.getDefaultMessage()));
+			
+			return mp;
+			
+ 
+		}
+		
+		// It will handle all the other exceptions which is not mentioned above
+		@ExceptionHandler(Exception.class)
+		public Map<String,String> handleAll(Exception c){
+			
+			Map<String,String>mp=new HashMap< >();
+			 mp.put("error", c.getMessage());
+			
+			return mp;
+			
+			
+		}
+}

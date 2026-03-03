@@ -1,0 +1,25 @@
+package com.lpu.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.lpu.demo.Entity.College;
+import com.lpu.demo.Service.collegeService;
+
+@Controller
+
+public class collegeController {
+	@Autowired
+	private collegeService clgService;
+	
+	@PostMapping("/saveCollege")
+	public College save(@RequestBody College c) {
+		
+		return clgService.saveCollege(c);
+		
+	}
+	
+
+}

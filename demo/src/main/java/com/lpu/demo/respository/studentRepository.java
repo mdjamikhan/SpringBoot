@@ -1,0 +1,20 @@
+package com.lpu.demo.respository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.lpu.demo.Entity.Student;
+
+
+@Repository
+public interface studentRepository  extends JpaRepository<Student, Integer>{
+	
+	//DB CRUD method for Students
+	
+	@org.springframework.data.jpa.repository.Query("SELECT s FROM Student s WHERE s.college.id = :collegeId")
+	List<Student> findStudentsByCollegeId(@Param("collegeId") int collegeId);
+
+}

@@ -1,0 +1,17 @@
+spring.application.name=EmployeeApp
+
+
+
+
+
+spring.datasource.url= jdbc:mysql://localhost:3306/EmployeeApp?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=Jamikhan@09
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=true
+
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect
+
+spring.cache.type=simple

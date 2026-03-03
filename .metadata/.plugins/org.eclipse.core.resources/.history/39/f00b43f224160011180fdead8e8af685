@@ -1,0 +1,33 @@
+package com.lpu.EmployeeApp.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.lpu.EmployeeApp.controller.Employee;
+import com.lpu.EmployeeApp.entity.EmployeeApp;
+import com.lpu.EmployeeApp.repository.EmployeeRepository;
+
+
+@Service
+public class EmployeeService {
+	
+	@Autowired
+	private EmployeeRepository empRepo;
+	
+	public EmployeeApp saveEmployee(EmployeeApp e) {
+		return empRepo.save(e);
+	}
+	
+	public ResponseEntity<EmployeeApp> findEmployee( int id){
+		
+		EmployeeApp emp= empRepo.findById(id).get();
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(emp);
+		
+	}
+	
+
+
+}

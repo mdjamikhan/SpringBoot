@@ -1,0 +1,42 @@
+package com.lpu.EmployeeApp.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.lpu.EmployeeApp.entity.CompanyApp;
+import com.lpu.EmployeeApp.entity.EmployeeApp;
+import com.lpu.EmployeeApp.repository.CompanyRepository;
+
+
+@Service
+public class CompanyService {
+	
+	@Autowired
+	private CompanyRepository companyrepo;
+	
+	
+	public CompanyApp saveCompany(CompanyApp c) {
+		
+		return  companyrepo.save(c);	
+		
+	}
+	public CompanyApp saveCompanyAndMapWithEmployee(CompanyApp c) {
+		
+		c.getEmployees().forEach((t)->t.setCompany(c));	
+		return  companyrepo.save(c);	
+		
+	}
+	
+	public CompanyApp saveEmployeeToExistingCompany(int comId,List<EmployeeApp> newemp) {
+		CompanyApp companyApp= companyrepo.findById(comId).orElse(null);
+		companyApp.getEmployees().addAll(newemp);
+		return companyrepo.save(companyApp);
+		
+	}
+
+
+}
+
+

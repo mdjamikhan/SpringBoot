@@ -1,0 +1,49 @@
+package com.lpu.EmployeeApp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+ import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.lpu.EmployeeApp.dto.EmployeeDTO;
+import com.lpu.EmployeeApp.entity.EmployeeApp;
+import com.lpu.EmployeeApp.service.EmployeeService;
+
+import jakarta.validation.Valid;
+
+
+@RestController
+public class EmployeeController {
+	
+	
+    @Autowired
+    private EmployeeService empService;
+    @PostMapping("/saveEmployee")
+    public ResponseEntity<EmployeeDTO> saveEmployee(
+            @Valid @RequestBody EmployeeDTO dto) {
+
+        EmployeeDTO savedEmployee = empService.saveEmployeeDTO(dto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(savedEmployee);
+    }
+
+    @GetMapping("/findEmployee/{id}")
+    public ResponseEntity<EmployeeDTO> findEmployee(@PathVariable int id) {
+
+        EmployeeApp employee = empService.findEmployee(id);
+        EmployeeDTO dto = empService.entityToDTO(employee);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(dto);
+    }
+
+	
+	
+
+}

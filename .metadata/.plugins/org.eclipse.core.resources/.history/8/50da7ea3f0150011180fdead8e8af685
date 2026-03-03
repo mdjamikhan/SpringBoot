@@ -1,0 +1,15 @@
+package com.lpu.EmployeeApp.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.lpu.EmployeeApp.repository.CompanyRepository;
+
+public class CompanyService {
+	
+	@Autowired
+	private CompanyRepository companyrepo;
+
+
+}
+
+

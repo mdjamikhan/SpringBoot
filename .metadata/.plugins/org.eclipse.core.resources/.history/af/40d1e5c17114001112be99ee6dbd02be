@@ -1,0 +1,5 @@
+package com.lpu.demo.respository;
+
+public interface collegeRepository {
+
+}

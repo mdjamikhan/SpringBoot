@@ -1,9 +1,0 @@
-package com.lpu.demo.respository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.lpu.demo.Entity.College;
-
-public interface collegeRepository  extends JpaRepository<College, Integer>{
-
-}

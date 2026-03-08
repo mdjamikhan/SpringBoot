@@ -2,6 +2,10 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/Users/mjamik/Downloads/SpringBoot2/StudentAssignment"/>
+			<item value="/Users/mjamik/Downloads/SpringBoot2/security2"/>
+			<item value="/Users/mjamik/Downloads/SpringBoot2/demo-Security1"/>
+			<item value="/Users/mjamik/Downloads/SpringBoot2/MobileApp"/>
 			<item value="/Users/mjamik/Downloads/SpringBoot2/EmployeeApp"/>
 			<item value="/Users/mjamik/Downloads/SpringBoot2/demo"/>
 		</list>
